@@ -10,9 +10,10 @@ html {
 
 body {
     margin: 0;
-    /*overflow-y: scroll;*/
-    margin-right: 10px;
-    width: calc(100vw - 34px); /* so scrollbar doesn't affect layout */
+    overflow-y: scroll;
+    /* so scrollbar doesn't affect layout */
+    /*margin-right: 10px;*/
+    /*width: calc(100vw - 34px); */
 }
 
 a {
@@ -96,6 +97,10 @@ ol,
 ul {
     margin-top: 0;
     /*margin-bottom: 1.75rem; */
+}
+
+ul {
+    list-style-position: inside;
 }
 
 a {
@@ -225,10 +230,10 @@ button:active,
     color: #333;
 }
 
-.container {
+.container > * {
     *zoom: 1;
     width: auto;
-    max-width: 42em;
+    max-width: 42rem;
     float: none;
     display: block;
     margin-right: auto;
@@ -279,11 +284,6 @@ button:active,
 
 .footer a {
     color: #333;
-}
-
-.post {
-    position: relative;
-    margin-bottom: 2rem;
 }
 
 .post-title:after {
@@ -376,6 +376,8 @@ button:active,
     color: #ccc;
 }
 
-video {
-    margin-left: 50%; transform: translateX(-50%);
+.container video {
+    margin: 0 auto;
+    display: block;
+    max-width: 100%;
 }
