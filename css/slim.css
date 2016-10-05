@@ -238,8 +238,8 @@ button:active,
     display: block;
     margin-right: auto;
     margin-left: auto;
-    padding-left: 0;
-    padding-right: 0;
+    padding-left: 1rem;
+    padding-right: 1rem;
 }
 
 .container:before,
@@ -286,14 +286,23 @@ button:active,
     color: #333;
 }
 
+.post {
+    position: relative;
+}
+
+.post-title {
+    position: relative;
+    /*text-align: center;*/
+}
+
 .post-title:after {
     content: '';
     display: block;
     border-top: 1px solid #ccc;
-    width: 100%;
+    right: 0;
+    left: 0;
     position: absolute;
-    top: 30px;
-    left: -30px;
+    top: 31px;
     z-index: -1;
 }
 
@@ -306,44 +315,6 @@ button:active,
     margin-left: -14px;
     -webkit-transition: all 0.3s;
     transition: all 0.3s;
-}
-
-.post-title a:after,
-.post-title a:before {
-    content: '';
-    position: absolute;
-    border: 3px solid transparent;
-    top: 13px;
-    -webkit-transition: all 0.3s;
-    transition: all 0.3s;
-}
-
-.post-title a:before {
-    left: -23px;
-    -webkit-transform: rotate(45deg);
-    -ms-transform: rotate(45deg);
-    transform: rotate(45deg);
-}
-
-.post-title a:after {
-    -webkit-transform: rotate(225deg);
-    -ms-transform: rotate(225deg);
-    transform: rotate(225deg);
-    right: -23px;
-}
-
-.post-title a:hover:before,
-.post-title a:hover:after {
-    border-top-color: #ccc;
-    border-right-color: #ccc;
-}
-
-.post-title a:hover:before {
-    left: -3px;
-}
-
-.post-title a:hover:after {
-    right: -3px;
 }
 
 .post-date {
