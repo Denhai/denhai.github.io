@@ -17,8 +17,6 @@
       <guid>/post/static-site-cms/</guid>
       <description>
 
-&lt;p&gt;adsfasdf&lt;/p&gt;
-
 &lt;p&gt;As described in &lt;a href=&#34;https://news.ycombinator.com/item?id=10251686&#34;&gt;this discussion&lt;/a&gt;, the goal was to use a Google sheet as the &amp;ldquo;CMS&amp;rdquo; for a static site.&lt;/p&gt;
 
 &lt;p&gt;You edit the Google sheet and press a button, then the sheet&amp;rsquo;s data is used to build the site. Super cool!&lt;/p&gt;

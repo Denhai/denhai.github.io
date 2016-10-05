@@ -375,3 +375,7 @@ button:active,
 .post-tags a {
     color: #ccc;
 }
+
+video {
+    margin-left: 50%; transform: translateX(-50%);
+}
