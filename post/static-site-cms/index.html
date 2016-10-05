@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+<title>  CMS for a static site  &middot; denhai </title>
+
+
+<link rel="stylesheet" href="/css/slim.css">
+<link rel="stylesheet" href="/css/highlight.min.css">
+<link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700|Source+Code+Pro' rel='stylesheet' type='text/css'>
+
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144-precomposed.png">
+<link rel="shortcut icon" href="/favicon.ico">
+
+
+<link href="" rel="alternate" type="application/rss+xml" title="denhai" />
+
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+  <h1 class="site-title">
+    <a href="/">denhai</a>
+    
+    <a style="position: absolute; right: 30px;" href="/post/static-site-cms/">CMS for a static site</a>
+    
+  </h1>
+    <span style="position: absolute; right: 30px; padding-top: 5px;" class="post-date">Sep 3, 2016 </span>
+ 
+
+</div>
+        <div class="content">
+            <div class="posts">
+                <div class="post">
+                    <div class="post-content">
+                        
+
+<p>adsfasdf</p>
+
+<p>As described in <a href="https://news.ycombinator.com/item?id=10251686">this discussion</a>, the goal was to use a Google sheet as the &ldquo;CMS&rdquo; for a static site.</p>
+
+<p>You edit the Google sheet and press a button, then the sheet&rsquo;s data is used to build the site. Super cool!</p>
+
+<video controls>
+    <source src="/media/static cms.mp4" type="video/mp4">
+</video>
+
+<h1 id="google-sheets-api">Google Sheets API</h1>
+
+<p>You can get data from a spreadsheet in JSON by using the Sheets API.</p>
+
+<p>It is as simple as sending a get request with a <em>spreadsheetId</em> and an <em>apiKey</em>. If the sheet has sharing turned on, you don&rsquo;t even need to authenticate.</p>
+
+<p><code>https<nolink>://sheets.googleapis.com/v4/spreadsheets/<b>spreadsheetId</b>/values/A1:A?key=<b>apiKey</b>
+</code></p>
+
+<p>The <em>spreadsheetId</em> is in the URL of the sheet. You get an <em>apiKey</em> by enabling the Google Sheets API from the developers console.</p>
+
+<p>See the <a href="https://developers.google.com/sheets/reference/rest/v4/spreadsheets.values/get">docs</a>
+for more information.</p>
+
+<h1 id="render-the-content-with-a-static-site-generator">Render the content with a static site generator</h1>
+
+<p>There are many generators you could choose the build the site. I personally used <a href="https://gohugo.io/">Hugo</a> and its <a href="https://gohugo.io/extras/datadrivencontent">getJSON</a> function.</p>
+
+<h1 id="publish-button-in-google-sheets">Publish button in Google sheets</h1>
+
+<p>Get a hook url from Netlify</p>
+
+<p>In the sheet, go to Tools &gt; Script Editor. Paste the following code and change the <em>url</em>.</p>
+
+<pre><code>function myFunction() {
+  var url = 'https://api.netlify.com/build_hooks/YOUR_BUILD_HOOK_ID';
+  var response = UrlFetchApp.fetch(url, { &quot;method&quot;: &quot;post&quot; });
+}
+</code></pre>
+
+<p>Insert either a <em>Drawing</em> or an <em>Image</em> to act as a button. Right click and <em>Assign script</em>. Type in the name of the function you just created.</p>
+
+<p>Click that button image and it should send a POST request and trigger the build.</p>
+
+<p>Extra: a confirm dialog (<a href="https://developers.google.com/apps-script/guides/dialogs">docs</a>).</p>
+
+<h1 id="swapping-out-layers">Swapping out layers</h1>
+
+<ul>
+<li>Use Contentful as the CMS</li>
+<li>Run the build with AWS Lambda and output the static resources to S3</li>
+<li>Jekyll or many other static site generators</li>
+</ul>
+
+                    </div>
+                </div>
+                <div class="pagination"> 
+                </div>
+            </div>
+        </div>
+         <div class="footer">
+    
+    Hayden Bartlett
+    
+     
+    <a href="https://github.com/denhai">Github</a> 
+
+</div>
+    </div>
+    <script src="/js/slim.js"></script>
+    <script src="/js/highlight.min.js"></script>
+    <script>
+        hljs.initHighlightingOnLoad();
+    </script>
+    <script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-78106752-3', 'auto');
+ga('send', 'pageview');
+
+</script>
+
+</body>
+
+</html>

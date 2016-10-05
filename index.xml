@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>denhai</title>
+    <link>/</link>
+    <description>Recent content on denhai</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 03 Sep 2016 00:48:52 +0930</lastBuildDate>
+    <atom:link href="/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>CMS for a static site</title>
+      <link>/post/static-site-cms/</link>
+      <pubDate>Sat, 03 Sep 2016 00:48:52 +0930</pubDate>
+      
+      <guid>/post/static-site-cms/</guid>
+      <description>
+
+&lt;p&gt;adsfasdf&lt;/p&gt;
+
+&lt;p&gt;As described in &lt;a href=&#34;https://news.ycombinator.com/item?id=10251686&#34;&gt;this discussion&lt;/a&gt;, the goal was to use a Google sheet as the &amp;ldquo;CMS&amp;rdquo; for a static site.&lt;/p&gt;
+
+&lt;p&gt;You edit the Google sheet and press a button, then the sheet&amp;rsquo;s data is used to build the site. Super cool!&lt;/p&gt;
+
+&lt;video controls&gt;
+    &lt;source src=&#34;/media/static cms.mp4&#34; type=&#34;video/mp4&#34;&gt;
+&lt;/video&gt;
+
+&lt;h1 id=&#34;google-sheets-api&#34;&gt;Google Sheets API&lt;/h1&gt;
+
+&lt;p&gt;You can get data from a spreadsheet in JSON by using the Sheets API.&lt;/p&gt;
+
+&lt;p&gt;It is as simple as sending a get request with a &lt;em&gt;spreadsheetId&lt;/em&gt; and an &lt;em&gt;apiKey&lt;/em&gt;. If the sheet has sharing turned on, you don&amp;rsquo;t even need to authenticate.&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;https&lt;nolink&gt;://sheets.googleapis.com/v4/spreadsheets/&lt;b&gt;spreadsheetId&lt;/b&gt;/values/A1:A?key=&lt;b&gt;apiKey&lt;/b&gt;
+&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;The &lt;em&gt;spreadsheetId&lt;/em&gt; is in the URL of the sheet. You get an &lt;em&gt;apiKey&lt;/em&gt; by enabling the Google Sheets API from the developers console.&lt;/p&gt;
+
+&lt;p&gt;See the &lt;a href=&#34;https://developers.google.com/sheets/reference/rest/v4/spreadsheets.values/get&#34;&gt;docs&lt;/a&gt;
+for more information.&lt;/p&gt;
+
+&lt;h1 id=&#34;render-the-content-with-a-static-site-generator&#34;&gt;Render the content with a static site generator&lt;/h1&gt;
+
+&lt;p&gt;There are many generators you could choose the build the site. I personally used &lt;a href=&#34;https://gohugo.io/&#34;&gt;Hugo&lt;/a&gt; and its &lt;a href=&#34;https://gohugo.io/extras/datadrivencontent&#34;&gt;getJSON&lt;/a&gt; function.&lt;/p&gt;
+
+&lt;h1 id=&#34;publish-button-in-google-sheets&#34;&gt;Publish button in Google sheets&lt;/h1&gt;
+
+&lt;p&gt;Get a hook url from Netlify&lt;/p&gt;
+
+&lt;p&gt;In the sheet, go to Tools &amp;gt; Script Editor. Paste the following code and change the &lt;em&gt;url&lt;/em&gt;.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;function myFunction() {
+  var url = &#39;https://api.netlify.com/build_hooks/YOUR_BUILD_HOOK_ID&#39;;
+  var response = UrlFetchApp.fetch(url, { &amp;quot;method&amp;quot;: &amp;quot;post&amp;quot; });
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Insert either a &lt;em&gt;Drawing&lt;/em&gt; or an &lt;em&gt;Image&lt;/em&gt; to act as a button. Right click and &lt;em&gt;Assign script&lt;/em&gt;. Type in the name of the function you just created.&lt;/p&gt;
+
+&lt;p&gt;Click that button image and it should send a POST request and trigger the build.&lt;/p&gt;
+
+&lt;p&gt;Extra: a confirm dialog (&lt;a href=&#34;https://developers.google.com/apps-script/guides/dialogs&#34;&gt;docs&lt;/a&gt;).&lt;/p&gt;
+
+&lt;h1 id=&#34;swapping-out-layers&#34;&gt;Swapping out layers&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Use Contentful as the CMS&lt;/li&gt;
+&lt;li&gt;Run the build with AWS Lambda and output the static resources to S3&lt;/li&gt;
+&lt;li&gt;Jekyll or many other static site generators&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>
